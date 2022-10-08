@@ -1,0 +1,59 @@
+Tech Talk Go Concurrency
+8 October 2022
+
+Pablo Huanca
+pablo.huanca@mercadolibre.com
+
+* What is concurrency?
+Concurrency is the composition of _independently_ executing computations.
+
+Concurrency is a way to structure software, particulary as a way to write clean code that interacts well with the real world.
+
+*It*is*not*parallelism.*
+
+* Concurrency is not parallelism
+
+Concurrency is not parallelism, although it enables parallelism.
+
+If you have only one processor, your program can still be concurrent but it cannot be parallel.
+
+On the other hand, a well-written concurrent program might run efficiently in parallel on a multiprocessor. That property could be important...
+
+
+* Features
+- *goroutine* to execute tasks _independently_, potentially in parallel.
+- *channels* for _communication_, _synchronization_ between goroutines.
+- *select* control structure unique to concurrency.
+
+* Go runtime
+.image thread_goroutine.drawio.png
+
+* Sequential approach
+.play ./sequential/main.go /^//SEQ/,/^//ENDSEQ/ HL12
+
+* Concurrent approach
+.play ./main.go /^//CONCUR/,/^//ENDCONCUR/
+
+
+* Concurrent approach - Channels
+.play ./main.go /^//CONCUR/,/^//ENDCONCUR/
+
+* Channels properties
+- *goroutine* safe.
+- store and *pass*values*between*goroutines.*
+- provide *FIFO*semantics.*
+- can *cause*goroutines*to*block*and*unblock.*
+
+
+* Goroutines
+
+Goroutines are user-space threads.
+
+- conceptually similar to kernel threads managed by OS, but *managed*entirely*by*Go*runtime*.
+- *lighter-weight*and*cheaper* than kernel threads.
+*smaller*memory*footprint*:
+initial goroutine stack = 2KB; default thread stack = 8KB.
+state tracking overhead.
+
+*faster*creation,*destruction,*context*switches*:
+goroutine switches =~ ten of ns; thread switches =~ a µs.
