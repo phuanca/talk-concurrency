@@ -30,13 +30,14 @@ On the other hand, a well-written concurrent program might run efficiently in pa
 
 * Sequential approach
 .play ./sequential/main.go /^//SEQ/,/^//ENDSEQ/ HL12
+.code ./main.go  /^//PROC/,/^//ENDPROC/
 
 * Concurrent approach
 .play ./main.go /^//CONCUR/,/^//ENDCONCUR/
 
 
 * Concurrent approach - Channels
-.play ./main.go /^//CONCUR/,/^//ENDCONCUR/
+.play ./channel/main.go /^//CHAN/,/^//ENDCHAN/
 
 * Channels properties
 - *goroutine* safe.

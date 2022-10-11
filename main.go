@@ -13,14 +13,17 @@ func main() { // HL12
 	for i := range tasks {
 		go process(tasks[i]) // HL
 	}
-
 	// Need to wait?
 	time.Sleep(6 * time.Second)
 	//ENDCONCUR OMIT
 }
 
-func process(t string) {
+// PROC OMIT
+func process(t string) { // HL
 	log.Printf("starting %v", t)
-	time.Sleep(time.Duration(rand.Intn(5000)) * time.Millisecond)
-	log.Printf("finish %v", t)
+	randTime := time.Duration(rand.Intn(5000)) * time.Millisecond
+	time.Sleep(randTime)
+	log.Printf("finish %v in: %v", t, randTime)
 }
+
+//ENDPROC OMIT

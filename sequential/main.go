@@ -17,6 +17,7 @@ func main() {
 
 func process(t string) {
 	log.Printf("starting %v", t)
-	time.Sleep(time.Duration(rand.Intn(5000)) * time.Millisecond)
-	log.Printf("finish %v", t)
+	randTime := time.Duration(rand.Intn(5000)) * time.Millisecond
+	time.Sleep(randTime)
+	log.Printf("finish %v in: %v", t, randTime)
 }
